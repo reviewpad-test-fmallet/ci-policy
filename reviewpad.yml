@@ -2,5 +2,5 @@
 workflows:
   - name: CI Policy on Pull Requests
     run:
-      - if: $title() == ""
+      - if: $description() == ""
         then: failCheckStatus("Please provide a meaningful title to this Pull Request")
