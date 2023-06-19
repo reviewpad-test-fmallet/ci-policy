@@ -8,8 +8,10 @@ workflows:
         value: $commitMessage
         in: $commits()
         do:
+
+        
           - if: $matchString("(fix|feat|docs):.+", $commitMessage) == false
-            then: $failCheckStatus("The following commit message doesn't comply with conventional commits: '%s'")
+            then: $failCheckStatus("The following")
             #then: $failCheckStatus($sprintf("The following commit message doesn't comply with conventional commits: '%s'", [$commitMessage]))
       # Branch name must comply with naming convention
       - if: $matchString("(fix|feat|docs)/.+", $head()) == false
