@@ -5,14 +5,11 @@ workflows:
     run:
       # Commit messages must comply with conventional commits
       - forEach:
-        value: $commitMessage
-        in: $commits()
-        do:
-
-        
-          - if: $matchString("(fix|feat|docs):.+", $commitMessage) == false
-            then: $failCheckStatus("The following")
-            #then: $failCheckStatus($sprintf("The following commit message doesn't comply with conventional commits: '%s'", [$commitMessage]))
+          value: $commitMessage
+          in: $commits()
+          do:
+            - if: $matchString("(fix|feat|docs):.+", $commitMessage) == false
+              then: $failCheckStatus($sprintf("The following commit message doesn't comply with conventional commits: '%s'", [$commitMessage]))
       # Branch name must comply with naming convention
       - if: $matchString("(fix|feat|docs)/.+", $head()) == false
         then: $failCheckStatus($sprintf("The head branch '%s' must start either with fix/, feat/ or docs/", [$head()]))
