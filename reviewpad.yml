@@ -1,7 +1,6 @@
 
 workflows:
   - name: CI Policy on Pull Requests
-    on: pull_request
     run:
       # Commit messages must comply with conventional commits
       - forEach:
