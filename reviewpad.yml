@@ -9,7 +9,7 @@ workflows:
           in: $commits()
           do:
             - if: $matchString("(fix|feat|docs):.+", $commitMessage) == false
-              then: '$failCheckStatus($sprintf("The following commit message does not comply with conventional commits: '%s'", [$commitMessage]))'
+              then: '$failCheckStatus($sprintf("The following commit message does not comply with conventional commits: %s", [$commitMessage]))'
       # Branch name must comply with naming convention
       - if: $matchString("(fix|feat|docs)/.+", $head()) == false
         then: $failCheckStatus($sprintf("The head branch '%s' must start either with fix/, feat/ or docs/", [$head()]))
